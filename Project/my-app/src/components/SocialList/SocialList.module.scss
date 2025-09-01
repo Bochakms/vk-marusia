@@ -1,0 +1,16 @@
+.socialList {
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+
+  &__link {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

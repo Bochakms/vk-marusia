@@ -1,0 +1,36 @@
+.genreList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.genreItem {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.33);
+  border-radius: 24px;
+  background: #0a0b0b;
+  cursor: pointer;
+}
+
+.genreImage {
+  width: 290px;
+  height: 220px;
+}
+
+.genreContent {
+  padding: 22px 0 30px;
+}
+
+.genreTitle {
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+}

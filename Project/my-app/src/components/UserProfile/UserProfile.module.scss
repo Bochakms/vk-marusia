@@ -1,0 +1,53 @@
+.userProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__itemContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__itemName {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  &__itemValue {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  &__itemIcon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 14px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__btn {
+    margin: 0 auto 0 0;
+  }
+}

@@ -1,0 +1,37 @@
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-weight: 700;
+  border-radius: 16px;
+  color: white;
+
+  &--small {
+    font-size: 12px;
+    line-height: 16px;
+    padding: 2px 8px;
+  }
+
+  &--medium {
+    font-size: 18px;
+    line-height: 24px;
+    padding: 4px 12px;
+  }
+
+  &--red {
+    background-color: #c82020;
+  }
+
+  &--grey {
+    background-color: #777777;
+  }
+
+  &--green {
+    background-color: #308e21;
+  }
+
+  &--gold {
+    background-color: #a59400;
+  }
+}

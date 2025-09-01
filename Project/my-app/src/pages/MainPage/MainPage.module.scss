@@ -1,0 +1,19 @@
+.randomMovie {
+  margin-bottom: 40px;
+}
+
+.top10MovieList {
+  margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  &__heading {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: white;
+  }
+}

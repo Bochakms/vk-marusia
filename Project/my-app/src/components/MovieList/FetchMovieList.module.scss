@@ -1,0 +1,29 @@
+.loadMoreContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.loader {
+  color: #666;
+  font-size: 16px;
+}
+
+.endMessage {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.noMovies {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+
+  h2 {
+    margin-bottom: 16px;
+    color: #333;
+  }
+}
