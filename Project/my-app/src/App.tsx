@@ -4,12 +4,13 @@ import { MainPage } from "./pages/MainPage";
 import { Layout } from "./components/Layout";
 import { NavMenu } from "./components/NavMenu";
 import { GenrePage } from "./pages/GenrePage";
-import { GenreMoviesPage } from "./pages/GenreMoviesPage";
+import { MoviesByGenrePage } from "./pages/MoviesByGenrePage";
 import { MovieInfoPage } from "./pages/MovieInfoPage";
 import { SocialList } from "./components/SocialList/SocialList";
 import { AccountPage } from "./pages/AccountPage";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import { Modal } from "./components/Modal/Modal";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
               <Route path="/" element={<MainPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/genres" element={<GenrePage />} />
-              <Route path="/genres/:genre" element={<GenreMoviesPage />} />
+              <Route path="/genres/:genre" element={<MoviesByGenrePage />} />
               <Route path="/movies/:id" element={<MovieInfoPage />} />
             </Routes>
           </Layout>
@@ -38,6 +39,8 @@ function App() {
             <SocialList />
           </Layout>
         </footer>
+
+        <Modal />
       </BrowserRouter>
     </Provider>
   );

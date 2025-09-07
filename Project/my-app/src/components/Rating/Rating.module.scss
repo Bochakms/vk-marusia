@@ -1,3 +1,5 @@
+@use "../../styles/variables" as v;
+
 .rating {
   display: flex;
   align-items: center;
@@ -5,7 +7,7 @@
   gap: 4px;
   font-weight: 700;
   border-radius: 16px;
-  color: white;
+  color: v.$color-white;
 
   &--small {
     font-size: 12px;
@@ -20,18 +22,18 @@
   }
 
   &--red {
-    background-color: #c82020;
+    background-color: v.$color-fire-engine-red;
   }
 
   &--grey {
-    background-color: #777777;
+    background-color: v.$color-boulder;
   }
 
   &--green {
-    background-color: #308e21;
+    background-color: v.$color-medium-spring-green;
   }
 
   &--gold {
-    background-color: #a59400;
+    background-color: v.$color-brown-yellow;
   }
 }

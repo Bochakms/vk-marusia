@@ -1,0 +1,39 @@
+@use "../../styles/variables" as v;
+
+.mobileSearchOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: v.$color-black-80;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileSearch {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__header {
+    position: relative;
+  }
+
+  &__back {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+    border: none;
+    background-color: transparent;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: v.$color-white;
+  }
+}

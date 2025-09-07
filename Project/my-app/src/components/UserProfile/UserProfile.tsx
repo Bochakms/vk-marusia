@@ -4,6 +4,8 @@ import { Button } from "../Button";
 import { SpriteIcon } from "../SpriteIcon/SpriteIcon";
 import styles from "./UserProfile.module.scss";
 import { logoutUser } from "../../app/authSlice";
+import { useDeviceDetect } from "../../hooks/useDeviceDetect";
+import { Loader } from "../Loader";
 
 export const UserProfile = () => {
   const dispatch = useAppDispatch();
@@ -11,6 +13,7 @@ export const UserProfile = () => {
   const { user, isAuthenticated, isLoading } = useAppSelector(
     (state) => state.auth
   );
+  const { isMobile } = useDeviceDetect();
 
   const handleLogout = async () => {
     try {
@@ -23,7 +26,7 @@ export const UserProfile = () => {
   };
 
   if (isLoading) {
-    return <div>Загрузка профиля...</div>;
+    return <Loader />;
   }
 
   if (!isAuthenticated || !user) {
@@ -62,6 +65,7 @@ export const UserProfile = () => {
       <Button
         className={styles.userProfile__btn}
         variant="primary"
+        fullWidth={isMobile ? true : false}
         onClick={handleLogout}
         isLoading={isLoading}
       >

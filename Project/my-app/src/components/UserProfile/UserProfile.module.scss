@@ -1,7 +1,14 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
 .userProfile {
   display: flex;
   flex-direction: column;
   gap: 64px;
+
+  @include m.vp-767 {
+    gap: 40px;
+  }
 
   &__list {
     display: flex;
@@ -25,19 +32,30 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
+
+    @include m.vp-767 {
+      font-size: 14px;
+      line-height: 20px;
+      color: v.$color-white-50;
+    }
   }
 
   &__itemValue {
     font-weight: 700;
     font-size: 24px;
     line-height: 32px;
+
+    @include m.vp-767 {
+      font-size: 18px;
+      line-height: 24px;
+    }
   }
 
   &__itemIcon {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: v.$color-white-50;
     padding: 14px;
     font-weight: 700;
     font-size: 24px;
@@ -45,6 +63,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @include m.vp-767 {
+      width: 48px;
+      height: 48px;
+      padding: 8px;
+    }
   }
 
   &__btn {

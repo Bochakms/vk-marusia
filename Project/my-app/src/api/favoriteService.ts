@@ -1,7 +1,7 @@
 import axios from 'axios';
 import z from 'zod';
-import { authUtils } from './userService';
 import { MovieSchema, MoviesListSchema } from './movieService';
+import { authUtils } from '../utils/authUtils';
 
 export const FavoriteResponseSchema = z.object({
   result: z.boolean(),
@@ -58,7 +58,6 @@ export const favoritesService = {
     try {
       const response = await favoritesApi.get('/favorites');
       const data = MoviesListSchema.parse(response.data);
-      authUtils.setSessionActive();
       return data;
     } catch (error) {
       if (error instanceof Error && error.message.includes('Unauthorized')) {
@@ -78,8 +77,7 @@ export const favoritesService = {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       });      
-      const data = FavoriteResponseSchema.parse(response.data);
-      authUtils.setSessionActive();      
+      const data = FavoriteResponseSchema.parse(response.data); 
       return data;
     } catch (error) {
       if (error instanceof Error && error.message.includes('Unauthorized')) {
@@ -93,7 +91,6 @@ export const favoritesService = {
     try {
       const response = await favoritesApi.delete(`/favorites/${movieId}`);
       const data = FavoriteResponseSchema.parse(response.data);
-      authUtils.setSessionActive();
       return data;
     } catch (error) {
       if (error instanceof Error && error.message.includes('Unauthorized')) {

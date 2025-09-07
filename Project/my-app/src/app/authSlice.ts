@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { UserProfile } from '../api/userService';
-import { authService, authUtils } from '../api/userService';
+import { authService } from '../api/userService';
 import type { RootState } from './store';
+import { authUtils } from '../utils/authUtils';
 
 interface AuthState {
   user: UserProfile | null;
@@ -23,19 +24,17 @@ export const checkSessionAndLoadProfile = createAsyncThunk(
   'auth/checkSessionAndLoadProfile',
   async (_, { rejectWithValue }) => {
     try {
-      const isSessionActive = authUtils.isSessionActive();
-      
-      if (!isSessionActive) {
-        return { user: null, isAuthenticated: false };
-      }
-
       const profile = await authService.getProfile();
       return { user: profile, isAuthenticated: true };
     } catch (error) {
-      if (error instanceof Error) {
-        return rejectWithValue(error.message);
+      if (error instanceof Error && 
+          (error.message.includes('401') || 
+           error.message.includes('403') ||
+           error.message.includes('Unauthorized'))) {
+        return { user: null, isAuthenticated: false };
       }
-      return rejectWithValue('Unknown error occurred');
+
+      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
     }
   }
 );

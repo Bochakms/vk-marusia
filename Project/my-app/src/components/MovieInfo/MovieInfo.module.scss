@@ -1,33 +1,74 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
 .movie {
   padding-top: 32px;
   display: flex;
   flex-direction: column;
 
-  &__mainDescription {
-    display: flex;
-    align-items: center;
+  @include m.vp-767 {
+    padding-top: 0;
   }
 
-  &__content {
+  &__mainDescription {
+    display: grid;
+    grid-template-columns: minmax(300px, 600px) minmax(400px, 1fr);
+    align-items: center;
+
+    @include m.vp-767 {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__wrapper {
     width: 100%;
     max-width: 600px;
     display: flex;
     flex-direction: column;
+    gap: 60px;
+    padding-right: 16px;
+
+    @include m.vp-767 {
+      gap: 32px;
+      padding: 24px 0;
+    }
   }
 
-  &__contentWrap {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include m.vp-767 {
+      gap: 12px;
+    }
+  }
+
+  &__dataWrap {
     display: flex;
     align-items: center;
     gap: 16px;
     padding-right: 10px;
-    margin-bottom: 16px;
   }
 
   &__data {
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
-    color: rgba(255, 255, 255, 0.7);
+    color: v.$color-white-70;
+    white-space: nowrap;
+
+    @include m.vp-767 {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &__genre {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__title {
@@ -36,9 +77,12 @@
     font-weight: 700;
     font-size: 48px;
     line-height: 56px;
-    color: white;
-    margin-bottom: 16px;
-    padding-right: 10px;
+    color: v.$color-white;
+
+    @include m.vp-767 {
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
 
   &__plot {
@@ -47,9 +91,12 @@
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 60px;
-    padding-right: 10px;
+    color: v.$color-white-70;
+
+    @include m.vp-767 {
+      font-size: 18px;
+      line-height: 24px;
+    }
   }
 
   &__btnWrap {
@@ -59,10 +106,15 @@
   }
 
   &__imgContainer {
-    width: 680px;
+    width: 100%;
     height: 552px;
     overflow: hidden;
     border-radius: 16px;
+
+    @include m.vp-767 {
+      width: 338px;
+      height: 224px;
+    }
   }
 
   &__img {
@@ -76,7 +128,12 @@
     display: flex;
     flex-direction: column;
     gap: 64px;
-    padding-top: 40px;
+    padding: 40px 0 120px;
+
+    @include m.vp-767 {
+      gap: 40px;
+      padding: 32px 0;
+    }
   }
 
   &__heading {
@@ -85,19 +142,35 @@
     font-weight: 700;
     font-size: 40px;
     line-height: 48px;
-    color: white;
+    color: v.$color-white;
+
+    @include m.vp-767 {
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
 
   &__info {
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    @include m.vp-767 {
+      gap: 12px;
+    }
   }
 
   &__infoItem {
     display: grid;
     grid-template-columns: 320px auto;
     align-items: center;
+
+    @include m.vp-767 {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+    }
   }
 
   &__infoLabel {
@@ -105,17 +178,28 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
-    color: white;
+    color: v.$color-white;
     display: grid;
     grid-template-columns: auto 1fr;
     padding-right: 8px;
     gap: 8px;
+
+    @include m.vp-767 {
+      display: flex;
+      font-size: 14px;
+      line-height: 20px;
+      color: v.$color-white-50;
+    }
   }
 
   &__dot {
     width: 100%;
     margin-bottom: 6px;
-    border-bottom: 2px dotted rgba(255, 255, 255, 0.3);
+    border-bottom: 2px dotted v.$color-white-30;
+
+    @include m.vp-767 {
+      display: none;
+    }
   }
 
   &__infoValue {
@@ -123,6 +207,6 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
-    color: white;
+    color: v.$color-white;
   }
 }

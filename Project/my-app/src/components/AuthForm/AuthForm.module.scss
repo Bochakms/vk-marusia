@@ -1,3 +1,5 @@
+@use "../../styles/variables" as v;
+
 .authForm {
   display: flex;
   flex-direction: column;
@@ -8,7 +10,7 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 32px;
-    color: #000;
+    color: v.$color-black;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -19,7 +21,7 @@
     font-size: 18px;
     line-height: 24px;
     text-align: center;
-    color: #000;
+    color: v.$color-black;
   }
 
   &__wrapper {
@@ -41,8 +43,8 @@
   }
 
   &__errorText {
-    color: #dc3545;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+    color: v.$color-salmon;
+    font-size: 18px;
+    margin-top: 10px;
   }
 }

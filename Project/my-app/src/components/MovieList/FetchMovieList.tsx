@@ -5,6 +5,7 @@ import type { Movie } from "../../api/movieService";
 import { Loader } from "../Loader";
 import styles from "./FetchMovieList.module.scss";
 import { Button } from "../Button";
+import { useDeviceDetect } from "../../hooks/useDeviceDetect";
 
 interface FetchMovieListProps {
   genre: string;
@@ -17,6 +18,7 @@ export const FetchMovieList: React.FC<FetchMovieListProps> = ({ genre }) => {
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const { isMobile } = useDeviceDetect();
 
   const loadInitialMovies = useCallback(async () => {
     try {
@@ -94,7 +96,8 @@ export const FetchMovieList: React.FC<FetchMovieListProps> = ({ genre }) => {
             onClick={loadMoreMovies}
             variant="primary"
             size="medium"
-            disabled={loadingMore}
+            fullWidth={isMobile ? true : false}
+            isLoading={loadingMore}
           >
             {loadingMore ? "Загрузка..." : "Показать ещё"}
           </Button>

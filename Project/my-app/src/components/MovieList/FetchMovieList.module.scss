@@ -1,18 +1,20 @@
+@use "../../styles/variables" as v;
+
 .loadMoreContainer {
   display: flex;
   justify-content: center;
 }
 
 .loader {
-  color: #666;
+  color: v.$color-smokey-grey;
   font-size: 16px;
 }
 
 .endMessage {
   text-align: center;
   padding: 30px;
-  color: #666;
-  background: #f8f9fa;
+  color: v.$color-smokey-grey;
+  background: v.$color-white;
   border-radius: 8px;
   margin: 20px 0;
 }
@@ -20,10 +22,10 @@
 .noMovies {
   text-align: center;
   padding: 60px 20px;
-  color: #666;
+  color: v.$color-smokey-grey;
 
   h2 {
     margin-bottom: 16px;
-    color: #333;
+    color: v.$color-black;
   }
 }

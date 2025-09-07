@@ -1,5 +1,6 @@
 import axios from 'axios';
 import z from 'zod';
+import { authUtils } from '../utils/authUtils';
 
 export const LoginResponseSchema = z.object({
   result: z.boolean(),
@@ -83,15 +84,13 @@ export const authService = {
       },
     });
 
-    const data = LoginResponseSchema.parse(response.data);
-    authUtils.setSessionActive();
-    return data;
+    return LoginResponseSchema.parse(response.data);
   },
+
   logout: async (): Promise<LogoutResponse> => {
     const response = await authApi.get('/auth/logout');
-    const data = LogoutResponseSchema.parse(response.data);
     authUtils.clearAuthData();
-    return data;
+    return LogoutResponseSchema.parse(response.data);;
   },
 
   register: async (
@@ -112,23 +111,13 @@ export const authService = {
       },
     });
 
-    const data = RegisterResponseSchema.parse(response.data);
-    return data;
+    return RegisterResponseSchema.parse(response.data);
   },
 
   getProfile: async (): Promise<UserProfile> => {
-    try {
-      const response = await authApi.get('/profile');
-      const data = UserProfileSchema.parse(response.data);
-      authUtils.setSessionActive();
-      return data;
-    } catch (error) {
-    if (error instanceof Error && error.message.includes('Unauthorized')) {
-      authUtils.clearAuthData();
-    }
-      throw error;
-    }
-  },
+  const response = await authApi.get('/profile');
+  return UserProfileSchema.parse(response.data);
+},
 
   checkSession: async (): Promise<boolean> => {
     try {
@@ -140,37 +129,3 @@ export const authService = {
   },
 };
 
-const SESSION_ACTIVE_KEY = 'session_active';
-const LAST_ACTIVITY_KEY = 'last_activity';
-
-export const authUtils = {
-  setSessionActive: (): void => {
-    const now = new Date().getTime();
-    localStorage.setItem(LAST_ACTIVITY_KEY, now.toString());
-    localStorage.setItem(SESSION_ACTIVE_KEY, 'true');
-  },
-  
-  isSessionActive: (): boolean => {
-    const isActive = localStorage.getItem(SESSION_ACTIVE_KEY) === 'true';
-    if (!isActive) return false;
-    
-    const lastActivity = localStorage.getItem(LAST_ACTIVITY_KEY);
-    if (!lastActivity) return false;
-    
-    const lastActivityTime = parseInt(lastActivity);
-    const now = new Date().getTime();
-    const sessionTimeout = 24 * 60 * 60 * 1000;
-    
-    return (now - lastActivityTime) < sessionTimeout;
-  },
-  
-  clearAuthData: (): void => {
-    localStorage.removeItem(SESSION_ACTIVE_KEY);
-    localStorage.removeItem(LAST_ACTIVITY_KEY);
-  },
-  
-  getLastActivityTime: (): Date | null => {
-    const timestamp = localStorage.getItem(LAST_ACTIVITY_KEY);
-    return timestamp ? new Date(parseInt(timestamp)) : null;
-  },
-};

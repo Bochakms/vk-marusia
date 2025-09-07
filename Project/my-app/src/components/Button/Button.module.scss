@@ -1,3 +1,6 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -14,33 +17,33 @@
   padding: 16px 22px;
 
   &--primary {
-    background-color: #67a5eb;
-    color: white;
+    background-color: v.$color-cornflower-blue;
+    color: v.$color-white;
 
     &:hover:not(:disabled) {
-      background-color: #ffffff;
-      color: black;
+      background-color: v.$color-white;
+      color: v.$color-black;
     }
 
     &:disabled {
-      background-color: #45526e;
-      color: rgba(255, 255, 255, 0.5);
+      background-color: v.$color-mulled-wine;
+      color: v.$color-white-50;
       cursor: not-allowed;
     }
   }
 
   &--secondary {
-    background-color: #393b3c;
-    color: white;
+    background-color: v.$color-iridium;
+    color: v.$color-white;
 
     &:hover:not(:disabled) {
-      background-color: #ffffff;
-      color: black;
+      background-color: v.$color-white;
+      color: v.$color-black;
     }
 
     &:disabled {
-      background-color: #747474;
-      color: rgba(255, 255, 255, 0.5);
+      background-color: v.$color-smokey-grey;
+      color: v.$color-white-50;
       cursor: not-allowed;
     }
   }
@@ -51,6 +54,10 @@
 
   &--medium {
     padding: 16px 48px;
+
+    @include m.vp-767 {
+      padding: 16px 40px;
+    }
   }
 
   &--large {
@@ -73,21 +80,3 @@
     line-height: 24px;
   }
 }
-
-// .button--loading {
-//   cursor: wait;
-// }
-
-// /* Loader */
-// .button__loader {
-//   animation: spin 1s linear infinite;
-// }
-
-// @keyframes spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }

@@ -1,0 +1,1 @@
+export { ModalMobileSearch } from "./ModalMobileSearch";

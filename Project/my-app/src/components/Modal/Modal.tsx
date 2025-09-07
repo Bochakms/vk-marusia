@@ -40,7 +40,11 @@ export const Modal = () => {
           width={132}
           height={30}
         />
-        <button className={styles.modal__closeButton} onClick={handleClose}>
+        <button
+          className={styles.modal__closeButton}
+          onClick={handleClose}
+          aria-label="Закрыть"
+        >
           <SpriteIcon name="icon-close" width={24} height={24} />
         </button>
         {renderCurrentView()}

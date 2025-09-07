@@ -1,8 +1,16 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
 .account {
   padding: 64px 0;
   display: flex;
   flex-direction: column;
   gap: 64px;
+
+  @include m.vp-767 {
+    gap: 40px;
+    padding: 16px 0 40px;
+  }
 
   &__header {
     margin: 0;
@@ -10,12 +18,21 @@
     font-weight: 700;
     font-size: 48px;
     line-height: 56px;
+
+    @include m.vp-767 {
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
 
   &__menu {
     display: flex;
     align-items: center;
     gap: 64px;
+
+    @include m.vp-767 {
+      gap: 24px;
+    }
   }
 
   &__menuItem {
@@ -26,7 +43,7 @@
     cursor: pointer;
 
     &--active {
-      border-bottom: 1.5px solid rgba(220, 93, 252, 1);
+      border-bottom: 1.5px solid v.$color-heliotrope-purple;
     }
   }
 

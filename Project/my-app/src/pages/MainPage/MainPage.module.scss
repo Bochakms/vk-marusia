@@ -1,5 +1,12 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
 .randomMovie {
   margin-bottom: 40px;
+
+  @include m.vp-767 {
+    margin: 0;
+  }
 }
 
 .top10MovieList {
@@ -8,12 +15,23 @@
   flex-direction: column;
   gap: 64px;
 
+  @include m.vp-767 {
+    gap: 40px;
+    padding: 32px 0;
+    margin: 0;
+  }
+
   &__heading {
     margin: 0;
     padding: 0;
     font-weight: 700;
     font-size: 40px;
     line-height: 48px;
-    color: white;
+    color: v.$color-white;
+
+    @include m.vp-767 {
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
 }

@@ -6,8 +6,8 @@ export const MovieSchema = z.object({
   title: z.string(),
   originalTitle: z.string(),
   language: z.string(),
-  releaseYear: z.number(),
-  releaseDate: z.string(),
+  releaseYear: z.number().nullable(),
+  releaseDate: z.string().nullable(),
   genres: z.array(z.string()),
   plot: z.string(),
   runtime: z.number(),
@@ -44,7 +44,7 @@ export interface FetchMoviesParams {
   genre?: string;
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://cinemaguide.skillbox.cc/';
+const API_BASE_URL = 'https://cinemaguide.skillbox.cc/';
 
 const movieApi = axios.create({
   baseURL: API_BASE_URL,

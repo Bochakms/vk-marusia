@@ -15,23 +15,23 @@ export const GenreList: React.FC<GenreListProps> = ({ genresList }) => {
   };
 
   return (
-    <div className={styles.genreList}>
+    <div className={styles.genre__list}>
       {genres.map((genre) => (
         <div
           key={genre.id}
-          className={styles.genreItem}
+          className={styles.genre__card}
           onClick={() => handleGenreClick(genre.id)}
         >
           <img
             src={genre.imageUrl}
             alt={genre.name}
-            className={styles.genreImage}
+            className={styles.genre__cardImage}
             onError={(e) => {
               e.currentTarget.src = "../../../public/image/genres/default.png";
             }}
           />
-          <div className={styles.genreContent}>
-            <h3 className={styles.genreTitle}>{genre.name}</h3>
+          <div className={styles.genre__cardContent}>
+            <h3 className={styles.genre__cardTitle}>{genre.name}</h3>
           </div>
         </div>
       ))}

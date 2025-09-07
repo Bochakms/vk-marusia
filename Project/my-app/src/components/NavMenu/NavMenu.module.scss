@@ -1,4 +1,4 @@
-@import "../../styles/_variables";
+@use "../../styles/variables" as v;
 
 .navMenu {
   display: flex;
@@ -15,6 +15,7 @@
   }
 
   &__wrapper {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 40px;
@@ -27,18 +28,91 @@
     padding: 8px 0;
 
     &--active {
-      border-bottom: 1.5px solid rgba(220, 93, 252, 1);
+      border-bottom: 1.5px solid v.$color-heliotrope-purple;
     }
   }
 
   &__btn {
     background-color: transparent;
     border: none;
-    color: $color-white;
+    color: v.$color-white;
     font-size: 24px;
     line-height: 32px;
     padding: 0;
     margin: 0;
     cursor: pointer;
   }
+}
+
+.navMenuMobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+
+  &__logo {
+    width: 143px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__icon {
+    background-color: transparent;
+    border: none;
+    color: v.$color-white;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+}
+
+.searchContainer {
+  position: relative;
+  width: 100%;
+
+  &__header {
+    position: relative;
+  }
+
+  &__back {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+    border: none;
+    background-color: transparent;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: v.$color-white;
+  }
+}
+
+.searchResults {
+  position: absolute;
+  width: 560px;
+  top: 100%;
+  right: 0;
+  margin-top: 12px;
+  z-index: 1001;
+}
+
+.searchOverlay {
+  position: fixed;
+  top: 96px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: v.$color-black-50;
+  z-index: 1000;
 }

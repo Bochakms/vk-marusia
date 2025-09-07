@@ -1,16 +1,28 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
 .socialList {
   display: flex;
   gap: 24px;
   justify-content: flex-end;
 
+  @include m.vp-767 {
+    justify-content: flex-start;
+  }
+
   &__link {
     width: 36px;
     height: 36px;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid v.$color-white-80;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @include m.vp-767 {
+      width: 24px;
+      height: 24px;
+    }
   }
 }

@@ -1,7 +1,7 @@
 import { SpriteIcon } from "../SpriteIcon/SpriteIcon";
 import styles from "./MovieInfo.module.scss";
 import { formatRuntime } from "../../utils/timeFormatter";
-import { formatGenres } from "../../utils/genreFormatter";
+import { formatGenres } from "../../utils/genreUtils";
 import { Button } from "../Button/Button";
 import { Rating } from "../Rating";
 import { formatCurrency } from "../../utils/currencyFormatter";
@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { openModal } from "../../app/authSlice";
 import { TrailerModal } from "../TrailerModal";
+import { useDeviceDetect } from "../../hooks/useDeviceDetect";
 
 export interface MovieProps {
   movie: Movie;
@@ -32,6 +33,7 @@ export const MovieInfo: React.FC<MovieProps> = ({
   const { checkIsFavorite, toggleFavorite, isLoading } = useFavorites();
   const [isMovieFavorite, setIsMovieFavorite] = useState(false);
   const [isTrailerModalOpen, setIsTrailerModalOpen] = useState(false);
+  const { isMobile } = useDeviceDetect();
 
   const handleTrailerClick = () => {
     setIsTrailerModalOpen(true);
@@ -101,23 +103,32 @@ export const MovieInfo: React.FC<MovieProps> = ({
   return (
     <div className={styles.movie}>
       <div className={styles.movie__mainDescription}>
-        <div className={styles.movie__content}>
-          <div className={styles.movie__contentWrap}>
-            <Rating value={movie.tmdbRating} size="medium" />
-            <span className={styles.movie__data}>{movie.releaseYear}</span>
-            <span className={styles.movie__data}>
-              {formatGenres(movie.genres)}
-            </span>
-            <span className={styles.movie__data}>
-              {formatRuntime(movie.runtime)}
-            </span>
+        <div className={styles.movie__wrapper}>
+          <div className={styles.movie__content}>
+            <div className={styles.movie__dataWrap}>
+              <Rating value={movie.tmdbRating} size="medium" />
+              <span className={styles.movie__data}>{movie.releaseYear}</span>
+              <span
+                className={[styles.movie__data, styles.movie__genre].join(" ")}
+              >
+                {formatGenres(movie.genres)}
+              </span>
+              <span className={styles.movie__data}>
+                {formatRuntime(movie.runtime)}
+              </span>
+            </div>
+            <h2 className={styles.movie__title}>{movie.title}</h2>
+            <p className={styles.movie__plot}>{movie.plot}</p>
           </div>
-          <h2 className={styles.movie__title}>{movie.title}</h2>
-          <p className={styles.movie__plot}>{movie.plot}</p>
-          <div className={styles.movie__btnWrap}>
+
+          <div
+            className={styles.movie__btnWrap}
+            style={{ flexWrap: variant == "part" ? "wrap" : "nowrap" }}
+          >
             <Button
               variant="primary"
               size="medium"
+              fullWidth={isMobile ? true : false}
               onClick={handleTrailerClick}
             >
               Трейлер

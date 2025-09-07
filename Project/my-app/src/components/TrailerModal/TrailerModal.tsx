@@ -1,5 +1,4 @@
-// components/TrailerModal/TrailerModal.tsx
-import { useState, useRef, useEffect } from "react";
+import { useRef } from "react";
 import styles from "./TrailerModal.module.scss";
 import { SpriteIcon } from "../SpriteIcon/SpriteIcon";
 
@@ -16,57 +15,10 @@ export const TrailerModal: React.FC<TrailerModalProps> = ({
   trailerYouTubeId,
   title,
 }) => {
-  const [isPaused, setIsPaused] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const mouseMoveTimeout = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden";
-
-    // Слушаем сообщения от YouTube iframe
-    const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== "https://www.youtube.com") return;
-
-      try {
-        const data = JSON.parse(event.data);
-        if (data.event === "onStateChange") {
-          // 0: ended, 1: playing, 2: paused
-          setIsPaused(data.info === 2 || data.info === 0);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "unset";
-      window.removeEventListener("message", handleMessage);
-
-      if (mouseMoveTimeout.current) {
-        clearTimeout(mouseMoveTimeout.current);
-      }
-    };
-  }, [isOpen, onClose]);
 
   const getYouTubeUrl = () => {
-    // Включаем стандартные контролы YouTube и автопаузу при клике
-    return `https://www.youtube.com/embed/${trailerYouTubeId}?autoplay=1&controls=1&modestbranding=1&rel=0&enablejsapi=1`;
-  };
-
-  const handleIframeLoad = () => {
-    // YouTube API автоматически управляет состоянием
+    return `https://www.youtube.com/embed/${trailerYouTubeId}?autoplay=1`;
   };
 
   if (!isOpen) return null;
@@ -90,17 +42,7 @@ export const TrailerModal: React.FC<TrailerModalProps> = ({
             title={`Трейлер: ${title}`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            frameBorder="0"
-            onLoad={handleIframeLoad}
           />
-
-          {/* Показываем название только на паузе */}
-          {isPaused && (
-            <div className={styles.videoTitle}>
-              <h3>{title}</h3>
-              <p>Нажмите для продолжения воспроизведения</p>
-            </div>
-          )}
         </div>
       </div>
     </div>

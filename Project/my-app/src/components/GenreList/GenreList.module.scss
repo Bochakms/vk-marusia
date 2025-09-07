@@ -1,36 +1,47 @@
-.genreList {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-}
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
 
-.genreItem {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.33);
-  border-radius: 24px;
-  background: #0a0b0b;
-  cursor: pointer;
-}
+.genre {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
 
-.genreImage {
-  width: 290px;
-  height: 220px;
-}
+    @include m.vp-767 {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 24px;
+    }
+  }
 
-.genreContent {
-  padding: 22px 0 30px;
-}
+  &__card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid v.$color-white-25;
+    box-shadow: 0px 0px 80px 0px v.$color-white-33;
+    border-radius: 24px;
+    background: v.$color-night;
+    cursor: pointer;
+    max-width: 335px;
+  }
 
-.genreTitle {
-  margin: 0;
-  padding: 0;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 32px;
-  text-align: center;
-  vertical-align: middle;
-  color: white;
+  &__cardImage {
+    width: 100%;
+    height: 220px;
+  }
+
+  &__cardContent {
+    padding: 22px 0 30px;
+  }
+
+  &__cardTitle {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    vertical-align: middle;
+    color: v.$color-white;
+  }
 }
