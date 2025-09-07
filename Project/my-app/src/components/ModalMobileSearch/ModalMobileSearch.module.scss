@@ -36,4 +36,10 @@
     justify-content: center;
     color: v.$color-white;
   }
+
+  &__results {
+    padding: 24px 1px;
+    border-radius: 8px;
+    background-color: v.$color-iridium;
+  }
 }

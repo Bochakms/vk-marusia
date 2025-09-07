@@ -23,6 +23,12 @@
     background: v.$color-night;
     cursor: pointer;
     max-width: 335px;
+
+    transition: transform v.$transition-300;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   &__cardImage {

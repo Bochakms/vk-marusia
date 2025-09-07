@@ -29,3 +29,9 @@
     color: v.$color-black;
   }
 }
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

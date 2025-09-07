@@ -5,9 +5,6 @@
   &__list {
     display: flex;
     flex-direction: column;
-    padding: 8px;
-    border-radius: 8px;
-    background-color: v.$color-iridium;
   }
 
   &__empty {
@@ -24,6 +21,11 @@
     display: flex;
     gap: 16px;
     cursor: pointer;
+    transition: transform v.$transition-300;
+
+    &:hover {
+      transform: translateX(2.5%);
+    }
 
     @include m.vp-767 {
       flex-direction: column;
@@ -84,10 +86,4 @@
     line-height: 24px;
     color: v.$color-white;
   }
-}
-
-.swiperContainer {
-  padding: 24px 1px;
-  border-radius: 8px;
-  background-color: v.$color-iridium;
 }

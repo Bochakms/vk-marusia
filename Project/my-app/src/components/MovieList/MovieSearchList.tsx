@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { Movie } from "../../api/movieService";
 import styles from "./MovieSearchList.module.scss";
-import { formatGenres } from "../../utils/genreFormatter";
+import { formatGenres } from "../../utils/genreUtils";
 import { formatRuntime } from "../../utils/timeFormatter";
 import { Rating } from "../Rating";
 
@@ -83,24 +83,22 @@ export const MovieSearchList: React.FC<MovieSearchListProps> = ({
     );
   }
   return (
-    <div className={styles.swiperContainer}>
-      <Swiper
-        modules={[FreeMode]}
-        spaceBetween={16}
-        freeMode={true}
-        slidesOffsetBefore={16}
-        slidesOffsetAfter={16}
-        resistance={true}
-        resistanceRatio={0.85}
-        slidesPerView={1.5}
-        className={styles.movieSwiper}
-      >
-        {movies.map((movie) => (
-          <SwiperSlide key={movie.id} className={styles.swiperSlide}>
-            {renderMovieCard(movie)}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    <Swiper
+      modules={[FreeMode]}
+      spaceBetween={16}
+      freeMode={true}
+      slidesOffsetBefore={16}
+      slidesOffsetAfter={16}
+      resistance={true}
+      resistanceRatio={0.85}
+      slidesPerView={1.5}
+      className={styles.movieSwiper}
+    >
+      {movies.map((movie) => (
+        <SwiperSlide key={movie.id} className={styles.swiperSlide}>
+          {renderMovieCard(movie)}
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };

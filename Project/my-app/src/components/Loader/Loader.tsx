@@ -1,9 +1,3 @@
-import "./Loader.css";
+import styles from "./Loader.module.scss";
 
-export const Loader = () => (
-  <div className="loader">
-    <div className="loader-item"></div>
-    <div className="loader-item"></div>
-    <div className="loader-item"></div>
-  </div>
-);
+export const Loader = () => <div className={styles.loader}></div>;

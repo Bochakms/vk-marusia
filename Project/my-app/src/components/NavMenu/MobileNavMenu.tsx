@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { SpriteIcon } from "../SpriteIcon/SpriteIcon";
-import styles from "./NavMenu.module.scss";
+import styles from "./MobileNavMenu.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { openModal, selectIsAuthenticated } from "../../app/authSlice";
 import { useState } from "react";

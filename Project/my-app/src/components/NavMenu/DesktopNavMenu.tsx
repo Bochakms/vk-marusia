@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { SpriteIcon } from "../SpriteIcon/SpriteIcon";
-import styles from "./NavMenu.module.scss";
+import styles from "./DesktopNavMenu.module.scss";
 import { useRef, useState } from "react";
 import { CustomInput } from "../CustomInput";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";

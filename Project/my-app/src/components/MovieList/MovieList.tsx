@@ -29,7 +29,7 @@ export const MovieList: React.FC<MovieListProps> = ({
   const { isMobile } = useDeviceDetect();
 
   const getImageUrl = (url: string | null) => {
-    return url || "../../../public/image/Empty.jpg";
+    return url || "../../../public/image/no-poster.jpg";
   };
 
   const handleMovieClick = (id: number) => {
@@ -62,7 +62,7 @@ export const MovieList: React.FC<MovieListProps> = ({
         <div className={styles.movieCard__label}>{index + 1}</div>
       )}
 
-      {variant === "favorites" && hoveredMovieId === movie.id && (
+      {variant === "favorites" && (hoveredMovieId === movie.id || isMobile) && (
         <div className={styles.movieCard__removeButtonContainer}>
           <Button
             variant="secondary"

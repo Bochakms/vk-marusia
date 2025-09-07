@@ -21,6 +21,11 @@
   height: 100%;
   cursor: pointer;
   position: relative;
+  transition: transform v.$transition-300;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   &__poster {
     width: 100%;
@@ -49,10 +54,22 @@
     right: 0;
     transform: translate(50%, -50%);
     z-index: 10;
+
+    @include m.vp-767 {
+      top: 30px;
+      right: 30px;
+    }
   }
 
   &__removeButton {
     padding: 8px;
+
+    @include m.vp-767 {
+      width: 42px;
+      height: 42px;
+      background-color: v.$color-white;
+      color: v.$color-black;
+    }
   }
 }
 

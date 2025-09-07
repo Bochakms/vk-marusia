@@ -19,6 +19,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform color border-color v.$transition-300;
+
+    &:hover {
+      transform: scale(1.05);
+      color: v.$color-lilac;
+      border-color: v.$color-lilac;
+    }
 
     @include m.vp-767 {
       width: 24px;

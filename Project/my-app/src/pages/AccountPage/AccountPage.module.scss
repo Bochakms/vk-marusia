@@ -41,6 +41,11 @@
     gap: 8px;
     padding: 8px 0;
     cursor: pointer;
+    transition: color v.$transition-300;
+
+    &:hover {
+      color: v.$color-lilac;
+    }
 
     &--active {
       border-bottom: 1.5px solid v.$color-heliotrope-purple;

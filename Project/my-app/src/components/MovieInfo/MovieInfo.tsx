@@ -4,7 +4,7 @@ import { formatRuntime } from "../../utils/timeFormatter";
 import { formatGenres } from "../../utils/genreUtils";
 import { Button } from "../Button/Button";
 import { Rating } from "../Rating";
-import { formatCurrency } from "../../utils/currencyFormatter";
+import { formatCurrency, transformLanguage } from "../../utils/movieUtils";
 import type { Movie } from "../../api/movieService";
 import { useNavigate } from "react-router-dom";
 import { useFavorites } from "../../hooks/useFavorites";
@@ -18,14 +18,12 @@ export interface MovieProps {
   movie: Movie;
   variant?: "full" | "part";
   onRefresh?: () => void;
-  refreshing?: boolean;
 }
 
 export const MovieInfo: React.FC<MovieProps> = ({
   movie,
   variant = "full",
   onRefresh,
-  refreshing = false,
 }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -79,7 +77,10 @@ export const MovieInfo: React.FC<MovieProps> = ({
   };
 
   const rows = [
-    { label: "Язык оригинала", value: movie.language },
+    {
+      label: "Язык оригинала",
+      value: movie.language ? transformLanguage(movie.language) : undefined,
+    },
     {
       label: "Бюджет",
       value: movie.budget ? formatCurrency(movie.budget) : undefined,
@@ -157,7 +158,7 @@ export const MovieInfo: React.FC<MovieProps> = ({
                 size="small"
                 icon={<SpriteIcon name="icon-update" width={24} height={24} />}
                 onClick={onRefresh}
-                isDisabled={refreshing}
+                isLoading={isLoading}
               ></Button>
             )}
           </div>

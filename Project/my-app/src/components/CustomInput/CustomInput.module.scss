@@ -50,6 +50,7 @@
     border-radius: 8px;
     padding: 16px 16px 16px 52px;
     color: v.$color-black;
+    transition: border-color v.$transition-300;
 
     &::placeholder {
       color: v.$color-black-40;
@@ -63,11 +64,22 @@
     transform: translateY(-50%);
     pointer-events: none;
     color: v.$color-black-40;
+    transition: color v.$transition-300;
   }
 
   &__errorMessage {
     color: v.$color-salmon;
     font-size: 0.875rem;
     margin-top: 0.25rem;
+  }
+
+  &:hover,
+  &:focus-visible {
+    .customInput__field {
+      border-color: v.$color-lilac;
+    }
+    .customInput__icon {
+      color: v.$color-lilac;
+    }
   }
 }
