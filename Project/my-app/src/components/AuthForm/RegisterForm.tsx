@@ -14,19 +14,25 @@ import {
   setModalView,
 } from "../../app/authSlice";
 
-const registerSchema = z.object({
-  email: z
-    .string()
-    .min(1, "поле обязательно к заполнению")
-    .email("Введите корректный email"),
-  username: z.string().min(1, "поле обязательно к заполнению"),
-  surname: z.string().min(1, "поле обязательно к заполнению"),
-  password: z
-    .string()
-    .min(8, "Пароль должен содержать минимум 8 символов")
-    .regex(/[A-Z]/, "Пароль должен содержать хотя бы одну заглавную букву")
-    .regex(/[0-9]/, "Пароль должен содержать хотя бы одну цифру"),
-});
+const registerSchema = z
+  .object({
+    email: z
+      .string()
+      .min(1, "поле обязательно к заполнению")
+      .email("Введите корректный email"),
+    username: z.string().min(1, "поле обязательно к заполнению"),
+    surname: z.string().min(1, "поле обязательно к заполнению"),
+    password: z
+      .string()
+      .min(8, "Пароль должен содержать минимум 8 символов")
+      .regex(/[A-Z]/, "Пароль должен содержать хотя бы одну заглавную букву")
+      .regex(/[0-9]/, "Пароль должен содержать хотя бы одну цифру"),
+    confirmPassword: z.string().min(1, "поле обязательно к заполнению"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Пароли не совпадают",
+    path: ["confirmPassword"],
+  });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
@@ -108,6 +114,14 @@ export const RegisterForm = () => {
           iconName="icon-password"
           errorMessage={errors.password?.message}
           {...register("password")}
+        />
+
+        <CustomInput
+          type="password"
+          placeholder="Подтвердите пароль"
+          iconName="icon-password"
+          errorMessage={errors.confirmPassword?.message}
+          {...register("confirmPassword")}
         />
       </div>
 
