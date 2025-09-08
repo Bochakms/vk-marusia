@@ -26,6 +26,12 @@
   &__iconBack {
     width: 40px;
     height: 40px;
+    transition: transform color v.$transition-300;
+
+    &:hover {
+      color: v.$color-lilac;
+      transform: scale(1.2);
+    }
 
     @include m.vp-767 {
       width: 32px;

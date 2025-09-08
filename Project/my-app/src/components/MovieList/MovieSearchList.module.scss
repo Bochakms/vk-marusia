@@ -9,6 +9,8 @@
 
   &__empty {
     text-align: center;
+    font-size: 18px;
+    line-height: 24px;
 
     @include m.vp-767 {
       font-size: 14px;

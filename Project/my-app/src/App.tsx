@@ -1,21 +1,20 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import styles from "./App.module.scss";
-import { MainPage } from "./pages/MainPage";
 import { Layout } from "./components/Layout";
 import { NavMenu } from "./components/NavMenu";
-import { GenrePage } from "./pages/GenrePage";
-import { MoviesByGenrePage } from "./pages/MoviesByGenrePage";
-import { MovieInfoPage } from "./pages/MovieInfoPage";
 import { SocialList } from "./components/SocialList/SocialList";
-import { AccountPage } from "./pages/AccountPage";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { Modal } from "./components/Modal/Modal";
+import { AnimatedRoutes } from "./components/AnimatedRoutes";
+import { WelcomeScreen } from "./components/WelcomeScreen";
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <WelcomeScreen />
+
         <header className={styles.header}>
           <Layout>
             <NavMenu />
@@ -24,13 +23,7 @@ function App() {
 
         <main>
           <Layout>
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/account" element={<AccountPage />} />
-              <Route path="/genres" element={<GenrePage />} />
-              <Route path="/genres/:genre" element={<MoviesByGenrePage />} />
-              <Route path="/movies/:id" element={<MovieInfoPage />} />
-            </Routes>
+            <AnimatedRoutes />
           </Layout>
         </main>
 

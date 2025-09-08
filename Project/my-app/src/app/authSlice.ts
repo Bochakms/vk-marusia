@@ -10,6 +10,7 @@ interface AuthState {
   isLoading: boolean;
   error: string | null;
   modalView: 'login' | 'register' | 'success' | 'closed';
+  showWelcomeScreen: boolean;
 }
 
 const initialState: AuthState = {
@@ -18,6 +19,7 @@ const initialState: AuthState = {
   isLoading: false,
   error: null,
   modalView: 'closed',
+  showWelcomeScreen: true,
 };
 
 export const checkSessionAndLoadProfile = createAsyncThunk(
@@ -135,6 +137,9 @@ const authSlice = createSlice({
     setModalView: (state, action: PayloadAction<'login' | 'register' | 'success' | 'closed'>) => {
       state.modalView = action.payload;
     },
+    hideWelcomeScreen: (state) => {
+    state.showWelcomeScreen = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -209,7 +214,7 @@ export const selectAuthLoading = (state: RootState) => state.auth.isLoading;
 export const selectUserName = (state: RootState) => 
   state.auth.user ? `${state.auth.user.name} ${state.auth.user.surname}` : '';
 export const selectModalView = (state: RootState) => state.auth.modalView;
-
+export const selectShowWelcomeScreen = (state: RootState) => state.auth.showWelcomeScreen;
 
 export const { setUser, clearUser, setLoading, setError, clearError, clearAuth, openModal, closeModal, setModalView, } = authSlice.actions;
 export default authSlice.reducer;

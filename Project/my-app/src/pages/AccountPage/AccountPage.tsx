@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { animated, useTransition } from "@react-spring/web";
 import { FetchFavoritesMovieList } from "../../components/MovieList/FetchFavoritesMovieList";
 import { SpriteIcon } from "../../components/SpriteIcon/SpriteIcon";
 import { UserProfile } from "../../components/UserProfile";
@@ -11,16 +12,13 @@ export function AccountPage() {
   const [accView, setAccView] = useState<AccountView>("favorites");
   const { isMobile } = useDeviceDetect();
 
-  const renderCurrentView = () => {
-    switch (accView) {
-      case "favorites":
-        return <FetchFavoritesMovieList />;
-      case "profile":
-        return <UserProfile />;
-      default:
-        return null;
-    }
-  };
+  const transitions = useTransition(accView, {
+    from: { opacity: 0, transform: "translateX(50%)" },
+    enter: { opacity: 1, transform: "translateX(0)" },
+    leave: { opacity: 0, transform: "translateX(-50%)" },
+    config: { tension: 280, friction: 30 },
+    exitBeforeEnter: true,
+  });
 
   const handleChangeView = (view: AccountView) => {
     setAccView(view);
@@ -29,6 +27,7 @@ export function AccountPage() {
   return (
     <section className={styles.account}>
       <h2 className={styles.account__header}>Мой аккаунт</h2>
+
       <div className={styles.account__menu}>
         <div
           className={`${styles.account__menuItem} ${
@@ -63,7 +62,21 @@ export function AccountPage() {
           </span>
         </div>
       </div>
-      {renderCurrentView()}
+
+      <div style={{ minHeight: "400px" }}>
+        {transitions((style, item) => (
+          <animated.div
+            style={{
+              ...style,
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            {item === "favorites" && <FetchFavoritesMovieList />}
+            {item === "profile" && <UserProfile />}
+          </animated.div>
+        ))}
+      </div>
     </section>
   );
 }

@@ -12,6 +12,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: color v.$transition-300;
+
+    &:hover {
+      color: v.$color-lilac;
+    }
   }
 
   &__wrapper {
@@ -25,8 +30,9 @@
   &__pageLink {
     font-size: 24px;
     line-height: 32px;
-    padding: 8px 0;
+    padding: 8px 0 7px;
     transition: color v.$transition-300;
+    border-bottom: 1.5px solid transparent;
 
     &:hover {
       color: v.$color-lilac;
