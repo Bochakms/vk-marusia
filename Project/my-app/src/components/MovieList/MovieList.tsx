@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
-// import "swiper/css";
+import "swiper/css";
 
 import { useDeviceDetect } from "../../hooks/useDeviceDetect";
 
