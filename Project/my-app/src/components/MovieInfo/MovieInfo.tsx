@@ -165,7 +165,7 @@ export const MovieInfo: React.FC<MovieProps> = ({
         </div>
         <div className={styles.movie__imgContainer}>
           <img
-            src={movie.backdropUrl || "../../../public/image/Empty.jpg"}
+            src={movie.backdropUrl || "/image/Empty.jpg"}
             alt="backdrop"
             className={styles.movie__img}
           />

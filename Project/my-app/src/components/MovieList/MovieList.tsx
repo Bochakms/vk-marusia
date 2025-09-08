@@ -29,7 +29,7 @@ export const MovieList: React.FC<MovieListProps> = ({
   const { isMobile } = useDeviceDetect();
 
   const getImageUrl = (url: string | null) => {
-    return url || "../../../public/image/no-poster.jpg";
+    return url || "/image/no-poster.jpg";
   };
 
   const handleMovieClick = (id: number) => {
@@ -54,7 +54,7 @@ export const MovieList: React.FC<MovieListProps> = ({
         alt={movie.title}
         className={styles.movieCard__poster}
         onError={(e) => {
-          e.currentTarget.src = "/image/movies/poster-placeholder.jpg";
+          e.currentTarget.src = "/image/no-poster.jpg";
         }}
       />
 
