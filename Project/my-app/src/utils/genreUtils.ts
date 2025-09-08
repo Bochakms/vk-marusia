@@ -27,7 +27,7 @@ export const transformGenres = (genreIds: string[]): Genre[] => {
   return genreIds.map(genreId => ({
     id: genreId,
     name: genreTranslations[genreId] || genreId,
-    imageUrl: `../../public/image/genres/${genreId}.png`
+    imageUrl: `/image/genres/${genreId}.png`
   }));
 };
 
